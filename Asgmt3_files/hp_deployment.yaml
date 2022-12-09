@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-hp
+  labels:
+    app: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      volumes:
+      - name: mysql-hp
+        hostPath:
+          path: /var/lib/mysql
+      containers:
+      - name: mysql
+        image: 563571752566.dkr.ecr.us-east-1.amazonaws.com/mysql:v0.1
+        volumeMounts:
+        - name: mysql-hp
+          mountPath: /var/lib/mysql
+        ports:
+        - containerPort: 3306
+        env:
+          - name: DBPWD
+            value: "pw"
+          - name: DBUSER
+            value: "root"
+          - name: MYSQL_ROOT_PASSWORD
+            value: "pw"

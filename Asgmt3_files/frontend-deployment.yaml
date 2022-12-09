@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+  labels:
+    app: webapp
+  namespace: lab3
+spec:
+  selector:
+    matchLabels:
+      app: webapp
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: <  Image URI  >
+         env:
+          - name: DBHOST
+            value: "mysql"
+          - name: DBPORT
+            value: "3306"
+          - name: DBUSER
+            value: "root"
+          - name: DBPWD
+            value: "pass1234"
+          - name: DATABASE
+            value: "employees"
+          - name: APP_COLOR
+            value: "blue"
+        ports:
+        - name: webapp
+          containerPort: 80
+          protocol: TCP
