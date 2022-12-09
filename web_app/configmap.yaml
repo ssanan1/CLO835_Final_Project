@@ -1,7 +1,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-    name: colorapp-config
-    namespace: myapp
+    name: webapp-config
 data:
-    APP_COLOR: "blue"
+    #APP_COLOR: "blue"
+    IMAGE_URL_PATH: "IMG_LINK"
+    GROUP: "Group22"
+    IMAGE_URL_S3: "S3_IMG_LINK"
